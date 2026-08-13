@@ -53,7 +53,12 @@ public class PayPalCommerceModelFactory
     /// </returns>
     public async Task<MessagesModel> PrepareMessagesModelAsync(ButtonPlacement placement, bool loadScript)
     {
-        var ((messageConfig, amount, currencyCode), _) = await _serviceManager.PrepareMessagesAsync(_settings, placement);
+        if (!PayPalCommerceServiceManager.IsConfigured(_settings))
+            return null;
+
+        var ((messageConfig, amount, currencyCode), error) = await _serviceManager.PrepareMessagesAsync(_settings, placement);
+        if (!string.IsNullOrEmpty(error))
+            return null;
 
         return new()
         {
@@ -77,8 +82,16 @@ public class PayPalCommerceModelFactory
     /// </returns>
     public async Task<PaymentInfoModel> PreparePaymentInfoModelAsync(ButtonPlacement placement, int? productId = null)
     {
-        var (((scriptUrl, clientToken, userToken), (email, name), (messageConfig, amount), (isRecurring, isShippable)), _) = await _serviceManager
-            .PreparePaymentDetailsAsync(_settings, placement, productId);
+        //do not prepare buttons when PayPal Commerce has no merchant credentials
+        if (!PayPalCommerceServiceManager.IsConfigured(_settings))
+            return null;
+
+        var (((scriptUrl, clientToken, userToken), (email, name), (messageConfig, amount), (isRecurring, isShippable)), error) =
+            await _serviceManager.PreparePaymentDetailsAsync(_settings, placement, productId);
+
+        //hide buttons when script details cannot be prepared (e.g. missing credentials)
+        if (!string.IsNullOrEmpty(error) || string.IsNullOrEmpty(scriptUrl))
+            return null;
 
         return new()
         {

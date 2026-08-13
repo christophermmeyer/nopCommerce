@@ -339,8 +339,9 @@ public class PayPalCommercePaymentMethod : BasePlugin, IPaymentMethod, IWidgetPl
             SkipOrderConfirmPage = false,
             UseShipmentTracking = false,
             DisplayButtonsOnPaymentMethod = true,
-            DisplayButtonsOnProductDetails = true,
-            DisplayButtonsOnShoppingCart = true,
+            //off until the merchant completes PayPal credentials; avoids dead buttons on PDP/cart
+            DisplayButtonsOnProductDetails = false,
+            DisplayButtonsOnShoppingCart = false,
             DisplayLogoInHeaderLinks = false,
             DisplayLogoInFooter = false,
             RequestTimeout = PayPalCommerceDefaults.RequestTimeout,
