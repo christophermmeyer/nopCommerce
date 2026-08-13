@@ -1148,8 +1148,10 @@ public class PayPalCommerceServiceManager
     /// <returns>Result</returns>
     public static bool IsConfigured(PayPalCommerceSettings settings)
     {
-        //client id and secret are required to request remote services
-        return !string.IsNullOrEmpty(settings?.ClientId) && !string.IsNullOrEmpty(settings.SecretKey);
+        //client id, secret, and merchant id are required to request remote services and complete payments
+        return !string.IsNullOrEmpty(settings?.ClientId)
+            && !string.IsNullOrEmpty(settings.SecretKey)
+            && !string.IsNullOrEmpty(settings.MerchantId);
     }
 
     /// <summary>
@@ -1229,6 +1231,9 @@ public class PayPalCommerceServiceManager
     {
         return await HandleFunctionAsync(async () =>
         {
+            if (!IsConfigured(settings))
+                throw new NopException("Plugin not configured");
+
             //get the primary store currency
             var currencyCode = (await _currencyService.GetCurrencyByIdAsync(_currencySettings.PrimaryStoreCurrencyId))?.CurrencyCode;
             if (string.IsNullOrEmpty(currencyCode))
@@ -1341,6 +1346,9 @@ public class PayPalCommerceServiceManager
     {
         return await HandleFunctionAsync(async () =>
         {
+            if (!IsConfigured(settings))
+                throw new NopException("Plugin not configured");
+
             var currencyCode = (await _currencyService.GetCurrencyByIdAsync(_currencySettings.PrimaryStoreCurrencyId))?.CurrencyCode;
             if (string.IsNullOrEmpty(currencyCode))
                 throw new NopException("Primary store currency not set");
