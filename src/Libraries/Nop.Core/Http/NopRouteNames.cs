@@ -46,6 +46,11 @@ public static partial class NopRouteNames
         public const string CONTACT_US = "ContactUs";
 
         /// <summary>
+        /// Gets the customer feedback route name
+        /// </summary>
+        public const string FEEDBACK = "Feedback";
+
+        /// <summary>
         /// Gets the product search route name
         /// </summary>
         public const string SEARCH = "ProductSearch";        

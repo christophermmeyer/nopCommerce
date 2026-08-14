@@ -141,7 +141,10 @@ public partial class SitemapModelFactory : ISitemapModelFactory
             await PrepareLocalizedSitemapUrlAsync(NopRouteNames.General.SEARCH),
 
             //contact us
-            await PrepareLocalizedSitemapUrlAsync(NopRouteNames.General.CONTACT_US)
+            await PrepareLocalizedSitemapUrlAsync(NopRouteNames.General.CONTACT_US),
+
+            //customer feedback
+            await PrepareLocalizedSitemapUrlAsync(NopRouteNames.General.FEEDBACK)
         };
 
         //blog
@@ -560,6 +563,14 @@ public partial class SitemapModelFactory : ISitemapModelFactory
                 GroupTitle = commonGroupTitle,
                 Name = await _localizationService.GetResourceAsync("ContactUs"),
                 Url = _nopUrlHelper.RouteUrl(NopRouteNames.General.CONTACT_US)
+            });
+
+            //customer feedback
+            model.Items.Add(new SitemapModel.SitemapItemModel
+            {
+                GroupTitle = commonGroupTitle,
+                Name = await _localizationService.GetResourceAsync("Feedback"),
+                Url = _nopUrlHelper.RouteUrl(NopRouteNames.General.FEEDBACK)
             });
 
             //customer info

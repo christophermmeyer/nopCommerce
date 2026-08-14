@@ -62,6 +62,8 @@ public static partial class AdminWidgetZones
     public static string CustomerAttributeValueDetailsTop => "admin_customer_attribute_value_details_top";
     public static string CustomerDetailsBlock => "admin_customer_details_block";
     public static string CustomerDetailsButtons => "admin_customer_details_buttons";
+    public static string CustomerFeedbackDetailsButtons => "admin_customer_feedback_details_buttons";
+    public static string CustomerFeedbackListButtons => "admin_customer_feedback_list_buttons";
     public static string CustomerListButtons => "admin_customer_list_buttons";
     public static string CustomerRoleDetailsBottom => "admin_customer_role_details_bottom";
     public static string CustomerRoleDetailsButtons => "admin_customer_role_details_buttons";

@@ -160,6 +160,7 @@ public partial class NopStartup : INopStartup
         services.AddScoped<IArtificialIntelligenceService, ArtificialIntelligenceService>();
         services.AddScoped<IVendorService, VendorService>();
         services.AddScoped<ISearchTermService, SearchTermService>();
+        services.AddScoped<ICustomerFeedbackService, CustomerFeedbackService>();
         services.AddScoped<IGenericAttributeService, GenericAttributeService>();
         services.AddScoped<IMaintenanceService, MaintenanceService>();
         services.AddScoped<ICustomerService, CustomerService>();

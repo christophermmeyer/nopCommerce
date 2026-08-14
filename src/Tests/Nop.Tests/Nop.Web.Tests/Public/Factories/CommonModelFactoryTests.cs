@@ -172,6 +172,34 @@ public class CommonModelFactoryTests : BaseNopTest
     }
 
     [Test]
+    public async Task CanPrepareFeedbackModel()
+    {
+        var model = new FeedbackModel();
+        model = await _commonModelFactory.PrepareFeedbackModelAsync(model, true);
+
+        model.DisplayCaptcha.Should().BeFalse();
+        model.Email.Should().BeNullOrEmpty();
+        model.FullName.Should().BeNullOrEmpty();
+        model.AvailableCategories.Should().NotBeEmpty();
+        model.AvailableRatings.Count.Should().Be(5);
+
+        model = await _commonModelFactory.PrepareFeedbackModelAsync(model, false);
+        model.DisplayCaptcha.Should().BeFalse();
+        model.Email.Should().Be(NopTestsDefaults.AdminEmail);
+        model.FullName.Should().Be("John Smith");
+    }
+
+    [Test]
+    public void PrepareFeedbackModelShouldRaiseExceptionIfModelIsNull()
+    {
+        Assert.Throws<AggregateException>(() =>
+            _commonModelFactory.PrepareFeedbackModelAsync(null, true).Wait());
+
+        Assert.Throws<AggregateException>(() =>
+            _commonModelFactory.PrepareFeedbackModelAsync(null, false).Wait());
+    }
+
+    [Test]
     public void PrepareContactUsModelShouldRaiseExceptionIfModelIsNull()
     {
         Assert.Throws<AggregateException>(() =>
