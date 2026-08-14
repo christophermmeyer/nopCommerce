@@ -11,6 +11,9 @@
 
     //add main CSS file
     NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/styles{(supportRtl ? ".rtl" : "")}.css");
+
+    // dark-mode.css is added (not appended) so it loads after the theme stylesheet
+    NopHtml.AddCssFileParts($"~/Themes/{themeName}/Content/css/dark-mode.css");
     
     //add swiper css file
     if (catalogSettings.DisplayAllPicturesOnCatalogPages)

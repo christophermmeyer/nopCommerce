@@ -1,4 +1,5 @@
 ﻿using AwesomeAssertions;
+using Nop.Core;
 using Nop.Services.Themes;
 using NUnit.Framework;
 
@@ -61,5 +62,46 @@ public class ThemeProviderTests : BaseNopTest
         isExists.Should().BeFalse();
         isExists = await _themeProvider.ThemeExistsAsync("DefaultClean");
         isExists.Should().BeTrue();
+    }
+
+    [Test]
+    public void DefaultCleanThemeShouldIncludeDarkModeStylesheet()
+    {
+        var fileProvider = CommonHelper.DefaultFileProvider;
+        var darkModeCss = fileProvider.MapPath("~/Themes/DefaultClean/Content/css/dark-mode.css");
+
+        fileProvider.FileExists(darkModeCss).Should().BeTrue();
+
+        var css = fileProvider.ReadAllText(darkModeCss, System.Text.Encoding.UTF8);
+        css.Should().Contain("html.dark-mode");
+        css.Should().Contain("color-scheme: dark");
+        css.Should().Contain(".dark-mode-toggle");
+    }
+
+    [Test]
+    public void PublicStoreShouldIncludeDarkModeScript()
+    {
+        var fileProvider = CommonHelper.DefaultFileProvider;
+        var scriptPath = fileProvider.MapPath("~/js/public.darkmode.js");
+
+        fileProvider.FileExists(scriptPath).Should().BeTrue();
+
+        var script = fileProvider.ReadAllText(scriptPath, System.Text.Encoding.UTF8);
+        script.Should().Contain("nop.colorScheme");
+        script.Should().Contain("data-dark-mode-toggle");
+    }
+
+    [Test]
+    public void DefaultResourcesShouldIncludeDarkModeLocaleKeys()
+    {
+        var fileProvider = CommonHelper.DefaultFileProvider;
+        var resourcesPath = fileProvider.MapPath("~/App_Data/Localization/defaultResources.nopres.xml");
+
+        fileProvider.FileExists(resourcesPath).Should().BeTrue();
+
+        var resources = fileProvider.ReadAllText(resourcesPath, System.Text.Encoding.UTF8);
+        resources.Should().Contain("DarkMode.Toggle");
+        resources.Should().Contain("DarkMode.Toggle.Enable");
+        resources.Should().Contain("DarkMode.Toggle.Disable");
     }
 }
