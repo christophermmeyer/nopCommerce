@@ -6,6 +6,13 @@
             @await Component.InvokeAsync(typeof(TaxTypeSelectorViewComponent))
             @await Component.InvokeAsync(typeof(CurrencySelectorViewComponent))
             @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
+            <div class="dark-mode-selector">
+                <button type="button" class="dark-mode-toggle" data-dark-mode-toggle aria-pressed="false" aria-label="@T("DarkMode.Toggle.Enable")" data-label-enable="@T("DarkMode.Toggle.Enable")" data-label-disable="@T("DarkMode.Toggle.Disable")">
+                    <span class="dark-mode-toggle__icon dark-mode-toggle__icon--moon" aria-hidden="true"></span>
+                    <span class="dark-mode-toggle__icon dark-mode-toggle__icon--sun" aria-hidden="true"></span>
+                    <span class="dark-mode-toggle__label">@T("DarkMode.Toggle")</span>
+                </button>
+            </div>
             @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
         </div>
         <div class="header-links-wrapper">

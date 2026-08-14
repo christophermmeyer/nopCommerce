@@ -1,0 +1,247 @@
+/*********** DARK MODE **********/
+
+.dark-mode-selector {
+  display: block;
+}
+
+.dark-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 32px;
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 4px 10px;
+  color: var(--dark-gray-color);
+  font-size: 12px;
+  line-height: 1.2;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.dark-mode-toggle:hover,
+.dark-mode-toggle:focus {
+  border-color: var(--accent-blue-color);
+  color: var(--accent-blue-active-color);
+}
+
+.dark-mode-toggle__icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dark-mode-toggle__icon--moon {
+  display: inline-block;
+  background: radial-gradient(circle at 65% 35%, transparent 40%, currentColor 42%);
+}
+
+html.dark-mode .dark-mode-toggle__icon--moon {
+  display: none;
+}
+
+html.dark-mode .dark-mode-toggle__icon--sun {
+  display: inline-block;
+  background: currentColor;
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+.dark-mode-toggle__label {
+  font-size: 12px;
+}
+
+@media (min-width: 1001px) {
+  .dark-mode-selector {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .dark-mode-toggle {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media screen {
+  html.dark-mode {
+    color-scheme: dark;
+    --accent-blue-color: #5eb8f5;
+    --accent-blue-active-color: #7ec8f8;
+    --gray-color: #c8c8c8;
+    --dark-gray-color: #ececec;
+  }
+
+  html.dark-mode body {
+    background-color: #1a1a1a;
+    color: var(--gray-color);
+  }
+
+  html.dark-mode input[type="text"],
+  html.dark-mode input[type="email"],
+  html.dark-mode input[type="tel"],
+  html.dark-mode input[type="password"],
+  html.dark-mode input[type="search"],
+  html.dark-mode textarea,
+  html.dark-mode select {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+
+  html.dark-mode input[type="text"]:focus,
+  html.dark-mode input[type="email"]:focus,
+  html.dark-mode input[type="tel"]:focus,
+  html.dark-mode input[type="password"]:focus,
+  html.dark-mode input[type="search"]:focus,
+  html.dark-mode textarea:focus,
+  html.dark-mode select:focus {
+    border-color: var(--accent-blue-color);
+    color: #fff;
+  }
+
+  html.dark-mode input:-webkit-autofill,
+  html.dark-mode input:-webkit-autofill:hover,
+  html.dark-mode input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #e0e0e0;
+    -webkit-box-shadow: inset 0 0 0 1000px #2a2a2a;
+    caret-color: #e0e0e0;
+  }
+
+  html.dark-mode .header,
+  html.dark-mode .header-upper,
+  html.dark-mode .header-lower,
+  html.dark-mode .master-wrapper-page,
+  html.dark-mode .master-wrapper-content,
+  html.dark-mode .page,
+  html.dark-mode .item-box .picture,
+  html.dark-mode .flyout-cart,
+  html.dark-mode .ui-dialog,
+  html.dark-mode .ui-dialog-content,
+  html.dark-mode .eu-cookie-bar-notification,
+  html.dark-mode .footer-menu__list,
+  html.dark-mode .menu__item,
+  html.dark-mode .product-essential,
+  html.dark-mode .overview,
+  html.dark-mode .gallery,
+  html.dark-mode .cart,
+  html.dark-mode .order-summary-content,
+  html.dark-mode .checkout-page,
+  html.dark-mode .topic-block,
+  html.dark-mode .topic-page,
+  html.dark-mode .post,
+  html.dark-mode .news-item,
+  html.dark-mode .forum-table,
+  html.dark-mode .data-table,
+  html.dark-mode .cart-collaterals,
+  html.dark-mode .mini-shopping-cart {
+    background-color: #1a1a1a;
+  }
+
+  html.dark-mode .form-fields,
+  html.dark-mode .footer,
+  html.dark-mode .block .title,
+  html.dark-mode .menu > .menu__item,
+  html.dark-mode #topcartlink,
+  html.dark-mode .ui-dialog-titlebar,
+  html.dark-mode .item-box,
+  html.dark-mode .product-grid .item-box,
+  html.dark-mode .product-list .item-box,
+  html.dark-mode .block .listbox,
+  html.dark-mode .pager li a,
+  html.dark-mode .pager li span,
+  html.dark-mode .product-filters,
+  html.dark-mode .product-selectors,
+  html.dark-mode .attributes,
+  html.dark-mode .rental-attributes,
+  html.dark-mode .download-sample,
+  html.dark-mode .overview-buttons,
+  html.dark-mode .message-error,
+  html.dark-mode .order-progress,
+  html.dark-mode .address-box,
+  html.dark-mode .section.order-completed,
+  html.dark-mode .ui-autocomplete,
+  html.dark-mode .ui-datepicker,
+  html.dark-mode .ui-widget-content {
+    background-color: #242424;
+  }
+
+  html.dark-mode .header-upper,
+  html.dark-mode .header-selectors-wrapper,
+  html.dark-mode .page-title,
+  html.dark-mode .footer-upper,
+  html.dark-mode .follow-us .social ul,
+  html.dark-mode .block .title,
+  html.dark-mode .block .listbox,
+  html.dark-mode .ui-dialog,
+  html.dark-mode .ui-dialog-titlebar,
+  html.dark-mode .eu-cookie-bar-notification,
+  html.dark-mode .form-fields,
+  html.dark-mode table,
+  html.dark-mode th,
+  html.dark-mode td,
+  html.dark-mode .data-table,
+  html.dark-mode .cart th,
+  html.dark-mode .cart td,
+  html.dark-mode .forum-table th,
+  html.dark-mode .forum-table td {
+    border-color: #3a3a3a;
+  }
+
+  html.dark-mode .dark-mode-toggle {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: var(--dark-gray-color);
+  }
+
+  html.dark-mode .header-logo img {
+    background-color: #fff;
+    padding: 6px;
+    border-radius: 4px;
+  }
+
+  html.dark-mode .button-2 {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: var(--dark-gray-color);
+  }
+
+  html.dark-mode .button-2:hover,
+  html.dark-mode .button-2:focus {
+    background-color: #333;
+    color: #fff;
+  }
+
+  html.dark-mode a:hover,
+  html.dark-mode a:focus {
+    color: var(--accent-blue-active-color);
+  }
+
+  html.dark-mode .ui-widget-overlay,
+  html.dark-mode .ui-dialog:before {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  html.dark-mode .ui-autocomplete .ui-menu-item,
+  html.dark-mode .ui-autocomplete .ui-menu-item-wrapper,
+  html.dark-mode .ui-datepicker,
+  html.dark-mode .ui-datepicker-header,
+  html.dark-mode .ui-datepicker td,
+  html.dark-mode .ui-datepicker th {
+    background-color: #242424;
+    border-color: #3a3a3a;
+    color: var(--gray-color);
+  }
+
+  html.dark-mode .ui-state-hover,
+  html.dark-mode .ui-widget-content .ui-state-hover,
+  html.dark-mode .ui-state-focus,
+  html.dark-mode .ui-widget-content .ui-state-focus {
+    background-color: #333;
+    border-color: var(--accent-blue-color);
+    color: #fff;
+  }
+}

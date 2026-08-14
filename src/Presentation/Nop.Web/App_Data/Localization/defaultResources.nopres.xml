@@ -18664,6 +18664,15 @@
   <LocaleResource Name="GiftCardAttribute.From.Virtual">
     <Value><![CDATA[From: {0} <{1}>]]></Value>
   </LocaleResource>
+  <LocaleResource Name="DarkMode.Toggle">
+    <Value>Dark mode</Value>
+  </LocaleResource>
+  <LocaleResource Name="DarkMode.Toggle.Enable">
+    <Value>Switch to dark mode</Value>
+  </LocaleResource>
+  <LocaleResource Name="DarkMode.Toggle.Disable">
+    <Value>Switch to light mode</Value>
+  </LocaleResource>
   <LocaleResource Name="Header.SkipNavigation.Text">
     <Value>Skip navigation</Value>
   </LocaleResource>
