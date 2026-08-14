@@ -1242,6 +1242,15 @@
   <LocaleResource Name="ActivityLog.PublicStore.ContactUs">
     <Value>Used contact us form</Value>
   </LocaleResource>
+  <LocaleResource Name="ActivityLog.PublicStore.SubmitFeedback">
+    <Value>Submitted store feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="ActivityLog.DeleteCustomerFeedback">
+    <Value>Deleted a customer feedback (ID = {0})</Value>
+  </LocaleResource>
+  <LocaleResource Name="ActivityLog.EditCustomerFeedback">
+    <Value>Edited a customer feedback (ID = {0})</Value>
+  </LocaleResource>
   <LocaleResource Name="ActivityLog.PublicStore.Login.Success">
     <Value>Public store. Customer has logged in</Value>
   </LocaleResource>
@@ -12238,6 +12247,84 @@
   <LocaleResource Name="Admin.Customers.CustomerAttributes.Values.SaveBeforeEdit">
     <Value>You need to save the customer attribute before you can add values for this customer attribute page.</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback">
+    <Value>Customer feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.BackToList">
+    <Value>back to customer feedback list</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Deleted">
+    <Value>The customer feedback has been deleted successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.DeleteSelected">
+    <Value>Delete selected</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.CreatedOn">
+    <Value>Created on</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.Customer">
+    <Value>Customer</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.Email">
+    <Value>Email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.FeedbackText">
+    <Value>Feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.FullName">
+    <Value>Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.IsRead">
+    <Value>Read</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.Rating">
+    <Value>Rating</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.Store">
+    <Value>Store</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.Fields.Subject">
+    <Value>Category</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.CreatedOnFrom">
+    <Value>Created from</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.CreatedOnFrom.Hint">
+    <Value>The creation from date for the search.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.CreatedOnTo">
+    <Value>Created to</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.CreatedOnTo.Hint">
+    <Value>The creation to date for the search.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.SearchIsRead">
+    <Value>Read status</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.SearchIsRead.Hint">
+    <Value>Search by read status.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.SearchSubject">
+    <Value>Category</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.SearchSubject.Hint">
+    <Value>Search by feedback category.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.SearchText">
+    <Value>Search text</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.List.SearchText.Hint">
+    <Value>Search by name, email, or feedback text.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.MarkAsRead">
+    <Value>Mark as read</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.MarkedAsRead">
+    <Value>The customer feedback has been marked as read.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.CustomerFeedback.ViewDetails">
+    <Value>View customer feedback</Value>
+  </LocaleResource>
   <LocaleResource Name="Admin.Customers.CustomerRoles">
     <Value>Customer roles</Value>
   </LocaleResource>
@@ -18589,6 +18676,66 @@
   <LocaleResource Name="EUCookieLaw.LearnMore">
     <Value>Learn more</Value>
   </LocaleResource>
+  <LocaleResource Name="Feedback">
+    <Value>Feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Button">
+    <Value>Submit feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Category">
+    <Value>Category</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Category.Bug">
+    <Value>Bug</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Category.FeatureRequest">
+    <Value>Feature request</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Category.General">
+    <Value>General</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Category.Other">
+    <Value>Other</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Category.Required">
+    <Value>Please select a category</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Email">
+    <Value>Your email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Email.Hint">
+    <Value>Enter your email address.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Email.Required">
+    <Value>Enter email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.FeedbackText">
+    <Value>Your feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.FeedbackText.Hint">
+    <Value>Tell us what you think.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.FeedbackText.Required">
+    <Value>Enter your feedback</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.FullName">
+    <Value>Your name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.FullName.Hint">
+    <Value>Enter your name.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.FullName.Required">
+    <Value>Enter your name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Rating">
+    <Value>Rating</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.Rating.Required">
+    <Value>Please select a rating</Value>
+  </LocaleResource>
+  <LocaleResource Name="Feedback.SuccessfullySubmitted">
+    <Value>Thank you. Your feedback has been submitted.</Value>
+  </LocaleResource>
   <LocaleResource Name="Filtering.ManufacturerFilter">
     <Value>Filter by manufacturer</Value>
   </LocaleResource>
@@ -18705,6 +18852,9 @@
   </LocaleResource>
   <LocaleResource Name="Literals.Nop.Core.Http.NopRouteNames.General.ContactUs">
     <Value>Contact us</Value>
+  </LocaleResource>
+  <LocaleResource Name="Literals.Nop.Core.Http.NopRouteNames.General.Feedback">
+    <Value>Feedback</Value>
   </LocaleResource>
   <LocaleResource Name="Literals.Nop.Core.Http.NopRouteNames.General.Login">
     <Value>Login</Value>
@@ -19200,6 +19350,9 @@
   </LocaleResource>
   <LocaleResource Name="PageTitle.CustomerProductReviews">
     <Value>My product reviews</Value>
+  </LocaleResource>
+  <LocaleResource Name="PageTitle.Feedback">
+    <Value>Submit Feedback</Value>
   </LocaleResource>
   <LocaleResource Name="PageTitle.Login">
     <Value>Login</Value>

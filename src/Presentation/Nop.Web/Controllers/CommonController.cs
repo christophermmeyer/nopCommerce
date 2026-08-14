@@ -38,6 +38,7 @@ public partial class CommonController : BasePublicController
     protected readonly ICommonModelFactory _commonModelFactory;
     protected readonly ICurrencyService _currencyService;
     protected readonly ICustomerActivityService _customerActivityService;
+    protected readonly ICustomerFeedbackService _customerFeedbackService;
     protected readonly IGenericAttributeService _genericAttributeService;
     protected readonly IHtmlFormatter _htmlFormatter;
     protected readonly ILanguageService _languageService;
@@ -64,6 +65,7 @@ public partial class CommonController : BasePublicController
         ICommonModelFactory commonModelFactory,
         ICurrencyService currencyService,
         ICustomerActivityService customerActivityService,
+        ICustomerFeedbackService customerFeedbackService,
         IGenericAttributeService genericAttributeService,
         IHtmlFormatter htmlFormatter,
         ILanguageService languageService,
@@ -86,6 +88,7 @@ public partial class CommonController : BasePublicController
         _commonModelFactory = commonModelFactory;
         _currencyService = currencyService;
         _customerActivityService = customerActivityService;
+        _customerFeedbackService = customerFeedbackService;
         _genericAttributeService = genericAttributeService;
         _htmlFormatter = htmlFormatter;
         _languageService = languageService;
@@ -303,6 +306,56 @@ public partial class CommonController : BasePublicController
         }
 
         model = await _commonModelFactory.PrepareContactUsModelAsync(model, true, form);
+
+        return View(model);
+    }
+
+    //customer feedback page
+    [CheckAccessClosedStore(ignore: true)]
+    public virtual async Task<IActionResult> Feedback()
+    {
+        var model = new FeedbackModel();
+        model = await _commonModelFactory.PrepareFeedbackModelAsync(model, false);
+
+        return View(model);
+    }
+
+    [HttpPost, ActionName("Feedback")]
+    [ValidateCaptcha]
+    [CheckAccessClosedStore(ignore: true)]
+    public virtual async Task<IActionResult> FeedbackSend(FeedbackModel model, bool captchaValid)
+    {
+        if (_captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage && !captchaValid)
+            ModelState.AddModelError("", await _localizationService.GetResourceAsync("Common.WrongCaptchaMessage"));
+
+        if (ModelState.IsValid)
+        {
+            var customer = await _workContext.GetCurrentCustomerAsync();
+            var store = await _storeContext.GetCurrentStoreAsync();
+
+            await _customerFeedbackService.InsertCustomerFeedbackAsync(new CustomerFeedback
+            {
+                CustomerId = customer.Id,
+                StoreId = store.Id,
+                FullName = model.FullName?.Trim(),
+                Email = model.Email?.Trim(),
+                Subject = model.Subject,
+                FeedbackText = model.FeedbackText?.Trim(),
+                Rating = model.Rating,
+                IsRead = false,
+                CreatedOnUtc = DateTime.UtcNow
+            });
+
+            model.SuccessfullySubmitted = true;
+            model.Result = await _localizationService.GetResourceAsync("Feedback.SuccessfullySubmitted");
+
+            await _customerActivityService.InsertActivityAsync("PublicStore.SubmitFeedback",
+                await _localizationService.GetResourceAsync("ActivityLog.PublicStore.SubmitFeedback"));
+
+            return View(model);
+        }
+
+        model = await _commonModelFactory.PrepareFeedbackModelAsync(model, true);
 
         return View(model);
     }

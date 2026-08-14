@@ -263,6 +263,14 @@ public partial class AdminMenu : IAdminMenu
                         },
                         new()
                         {
+                            SystemName = "Customer feedback",
+                            Title = await _localizationService.GetResourceAsync("Admin.Customers.CustomerFeedback"),
+                            PermissionNames = new List<string> { StandardPermission.Customers.CUSTOMERS_VIEW },
+                            Url = GetMenuItemUrl("CustomerFeedback", "List"),
+                            IconClass = "far fa-dot-circle"
+                        },
+                        new()
+                        {
                             SystemName = "Customer roles",
                             Title = await _localizationService.GetResourceAsync("Admin.Customers.CustomerRoles"),
                             PermissionNames = new List<string> { StandardPermission.Customers.CUSTOMER_ROLES_VIEW },

@@ -52,6 +52,8 @@ public static partial class PublicWidgetZones
     public static string CheckoutShippingMethodTop => "checkout_shipping_method_top";
     public static string ContactUsBottom => "contactus_bottom";
     public static string ContactUsTop => "contactus_top";
+    public static string FeedbackBottom => "feedback_bottom";
+    public static string FeedbackTop => "feedback_top";
     public static string ContactVendorBottom => "contactvendor_bottom";
     public static string ContactVendorTop => "contactvendor_top";
     public static string ContentAfter => "content_after";

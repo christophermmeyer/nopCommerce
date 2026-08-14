@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Primitives;
 using Nop.Core;
 using Nop.Core.Caching;
@@ -541,6 +542,44 @@ public partial class CommonModelFactory : ICommonModelFactory
         model.SubjectEnabled = _commonSettings.SubjectFieldOnContactUsForm;
         model.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage;
         model.ContactFormAttributes = await PrepareContactFormAttributesAsync(form);
+
+        return model;
+    }
+
+    /// <summary>
+    /// Prepare the feedback model
+    /// </summary>
+    /// <param name="model">Feedback model</param>
+    /// <param name="excludeProperties">Whether to exclude populating of model properties from the entity</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation
+    /// The task result contains the feedback model
+    /// </returns>
+    public virtual async Task<FeedbackModel> PrepareFeedbackModelAsync(FeedbackModel model, bool excludeProperties)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+
+        if (!excludeProperties)
+        {
+            var customer = await _workContext.GetCurrentCustomerAsync();
+            model.Email = customer.Email;
+            model.FullName = await _customerService.GetCustomerFullNameAsync(customer);
+        }
+
+        model.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage;
+        model.AvailableCategories = await CustomerFeedbackDefaults.Categories.SelectAwait(async category => new SelectListItem
+        {
+            Text = await _localizationService.GetResourceAsync($"Feedback.Category.{category}"),
+            Value = category,
+            Selected = string.Equals(model.Subject, category, StringComparison.InvariantCultureIgnoreCase)
+        }).ToListAsync();
+        model.AvailableRatings = Enumerable.Range(1, 5)
+            .Select(rating => new SelectListItem
+            {
+                Text = rating.ToString(),
+                Value = rating.ToString(),
+                Selected = model.Rating == rating
+            }).ToList();
 
         return model;
     }

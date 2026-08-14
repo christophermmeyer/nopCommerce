@@ -93,6 +93,17 @@ public partial interface ICommonModelFactory
     Task<ContactUsModel> PrepareContactUsModelAsync(ContactUsModel model, bool excludeProperties, IFormCollection form = null);
 
     /// <summary>
+    /// Prepare the feedback model
+    /// </summary>
+    /// <param name="model">Feedback model</param>
+    /// <param name="excludeProperties">Whether to exclude populating of model properties from the entity</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation
+    /// The task result contains the feedback model
+    /// </returns>
+    Task<FeedbackModel> PrepareFeedbackModelAsync(FeedbackModel model, bool excludeProperties);
+
+    /// <summary>
     /// Prepare the contact vendor model
     /// </summary>
     /// <param name="model">Contact vendor model</param>

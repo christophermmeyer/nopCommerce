@@ -1,0 +1,75 @@
+@model FeedbackModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Feedback").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-feedback-page");
+}
+<div class="page contact-page feedback-page">
+    <div class="page-title">
+        <h1>@T("PageTitle.Feedback")</h1>
+    </div>
+    <div class="page-body">
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.FeedbackTop, additionalData = Model })
+        @if (Model.SuccessfullySubmitted)
+        {
+            <div class="result">
+                @Model.Result
+            </div>
+        }
+        else
+        {
+            <form asp-route="@NopRouteNames.General.FEEDBACK" method="post">
+                <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                <section class="fieldset">
+                    <div class="form-fields">
+                        <div class="inputs">
+                            <label asp-for="FullName" asp-postfix=":"></label>
+                            <input asp-for="FullName" placeholder="@T("Feedback.FullName.Hint")" class="fullname" />
+                            <nop-required />
+                            <span asp-validation-for="FullName"></span>
+                        </div>
+                        <div class="inputs">
+                            <label asp-for="Email" asp-postfix=":"></label>
+                            <input asp-for="Email" placeholder="@T("Feedback.Email.Hint")" class="email" />
+                            <nop-required />
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                        <div class="inputs">
+                            <label asp-for="Subject" asp-postfix=":"></label>
+                            <select asp-for="Subject" asp-items="Model.AvailableCategories" class="subject">
+                                <option value="">@T("Feedback.Category.Required")</option>
+                            </select>
+                            <nop-required />
+                            <span asp-validation-for="Subject"></span>
+                        </div>
+                        <div class="inputs">
+                            <label asp-for="Rating" asp-postfix=":"></label>
+                            <select asp-for="Rating" asp-items="Model.AvailableRatings" class="rating">
+                                <option value="0">@T("Feedback.Rating.Required")</option>
+                            </select>
+                            <nop-required />
+                            <span asp-validation-for="Rating"></span>
+                        </div>
+                        <div class="inputs">
+                            <label asp-for="FeedbackText" asp-postfix=":"></label>
+                            <textarea asp-for="FeedbackText" placeholder="@T("Feedback.FeedbackText.Hint")" class="enquiry"></textarea>
+                            <nop-required />
+                            <span asp-validation-for="FeedbackText"></span>
+                        </div>
+                        @if (Model.DisplayCaptcha)
+                        {
+                            <nop-captcha />
+                        }
+                    </div>
+                </section>
+                <section class="buttons">
+                    <button type="submit" name="send-feedback" class="button-1 contact-us-button">@T("Feedback.Button")</button>
+                </section>
+            </form>
+        }
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.FeedbackBottom, additionalData = Model })
+    </div>
+</div>
