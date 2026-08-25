@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain;
+using Nop.Core.Domain.Customers;
 using Nop.Core.Http;
 using Nop.Services.Common;
 using Nop.Services.Helpers;
