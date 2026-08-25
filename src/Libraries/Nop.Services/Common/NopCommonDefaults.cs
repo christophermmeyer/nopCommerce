@@ -271,6 +271,20 @@ public static partial class NopCommonDefaults
 
     #endregion
 
+    #region Agent interaction
+
+    /// <summary>
+    /// Gets the maximum allowed length of a storefront agent message
+    /// </summary>
+    public static int AgentInteractionMaxMessageLength => 2000;
+
+    /// <summary>
+    /// Gets the number of recent conversation messages loaded in the storefront window
+    /// </summary>
+    public static int AgentInteractionHistorySize => 50;
+
+    #endregion
+
     /// <summary>
     /// ~/App_Data/Pdf/OpenSans.ttf
     /// </summary>

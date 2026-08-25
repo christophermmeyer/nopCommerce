@@ -1,0 +1,129 @@
+@model AgentInteractionModel
+
+<div id="agent-interaction" class="agent-interaction">
+    <button type="button" class="agent-interaction-toggle" id="agent-interaction-toggle" aria-expanded="false" aria-controls="agent-interaction-window">
+        <span class="agent-interaction-toggle-icon" aria-hidden="true"></span>
+        <span class="agent-interaction-toggle-label">@T("AgentInteraction.Toggle")</span>
+    </button>
+    <section id="agent-interaction-window" class="agent-interaction-window" hidden>
+        <header class="agent-interaction-header">
+            <h2 class="agent-interaction-title">@T("AgentInteraction.Title")</h2>
+            <button type="button" class="agent-interaction-close" id="agent-interaction-close" aria-label="@T("AgentInteraction.Close")">&times;</button>
+        </header>
+        <div class="agent-interaction-messages" id="agent-interaction-messages" role="log" aria-live="polite">
+            @if (Model.Messages.Count == 0)
+            {
+                <p class="agent-interaction-empty" id="agent-interaction-empty">@T("AgentInteraction.Empty")</p>
+            }
+            @foreach (var message in Model.Messages)
+            {
+                <div class="agent-interaction-message @(message.IsFromCustomer ? "customer" : "agent")">
+                    <div class="agent-interaction-message-text">@message.Text</div>
+                    <div class="agent-interaction-message-time">@message.CreatedOn</div>
+                </div>
+            }
+        </div>
+        <form class="agent-interaction-form" id="agent-interaction-form" action="@Model.SendMessageUrl" method="post">
+            <label class="sr-only" for="agent-interaction-input">@T("AgentInteraction.Placeholder")</label>
+            <textarea id="agent-interaction-input" name="message" rows="2" maxlength="2000" placeholder="@T("AgentInteraction.Placeholder")" required></textarea>
+            <button type="submit" class="button-1 agent-interaction-send" id="agent-interaction-send">@T("AgentInteraction.Send")</button>
+        </form>
+        <p class="agent-interaction-error" id="agent-interaction-error" hidden></p>
+    </section>
+</div>
+<script asp-location="Footer">
+    $(function () {
+        var $root = $('#agent-interaction');
+        var $toggle = $('#agent-interaction-toggle');
+        var $window = $('#agent-interaction-window');
+        var $close = $('#agent-interaction-close');
+        var $form = $('#agent-interaction-form');
+        var $input = $('#agent-interaction-input');
+        var $messages = $('#agent-interaction-messages');
+        var $empty = $('#agent-interaction-empty');
+        var $error = $('#agent-interaction-error');
+        var $send = $('#agent-interaction-send');
+        var sendUrl = $form.attr('action');
+        var genericError = '@Html.Raw(JavaScriptEncoder.Default.Encode(T("AgentInteraction.Error.Generic").Text))';
+
+        function scrollToBottom() {
+            $messages.scrollTop($messages[0].scrollHeight);
+        }
+
+        function appendMessage(text, isFromCustomer, createdOn) {
+            $empty.remove();
+            var $message = $('<div/>', { 'class': 'agent-interaction-message ' + (isFromCustomer ? 'customer' : 'agent') });
+            $('<div/>', { 'class': 'agent-interaction-message-text', text: text }).appendTo($message);
+            if (createdOn) {
+                $('<div/>', { 'class': 'agent-interaction-message-time', text: createdOn }).appendTo($message);
+            }
+            $messages.append($message);
+            scrollToBottom();
+        }
+
+        function setOpen(isOpen) {
+            $window.prop('hidden', !isOpen);
+            $toggle.attr('aria-expanded', isOpen ? 'true' : 'false');
+            $root.toggleClass('is-open', isOpen);
+            if (isOpen) {
+                scrollToBottom();
+                $input.trigger('focus');
+            }
+        }
+
+        $toggle.on('click', function () {
+            setOpen($window.prop('hidden'));
+        });
+
+        $close.on('click', function () {
+            setOpen(false);
+            $toggle.trigger('focus');
+        });
+
+        $form.on('submit', function (e) {
+            e.preventDefault();
+            $error.prop('hidden', true).text('');
+
+            var message = $.trim($input.val());
+            if (!message) {
+                return;
+            }
+
+            appendMessage(message, true, '');
+            $input.val('');
+            $send.prop('disabled', true);
+
+            var postData = { message: message };
+            addAntiForgeryToken(postData);
+
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: sendUrl,
+                data: postData,
+                dataType: 'json',
+                success: function (data) {
+                    if (data && data.success) {
+                        appendMessage(data.reply, false, data.createdOn);
+                        return;
+                    }
+                    $error.text((data && data.message) ? data.message : genericError).prop('hidden', false);
+                },
+                error: function () {
+                    $error.text(genericError).prop('hidden', false);
+                },
+                complete: function () {
+                    $send.prop('disabled', false);
+                    $input.trigger('focus');
+                }
+            });
+        });
+
+        $input.on('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                $form.trigger('submit');
+            }
+        });
+    });
+</script>

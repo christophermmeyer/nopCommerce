@@ -66,6 +66,16 @@
     </div>
     <div class="form-group row advanced-setting">
         <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="StoreInformationSettings.DisplayAgentInteractionWindow_OverrideForStore" asp-input="StoreInformationSettings.DisplayAgentInteractionWindow" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="StoreInformationSettings.DisplayAgentInteractionWindow" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="StoreInformationSettings.DisplayAgentInteractionWindow" />
+            <span asp-validation-for="StoreInformationSettings.DisplayAgentInteractionWindow"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3">
             <nop-override-store-checkbox asp-for="StoreInformationSettings.StoreClosed_OverrideForStore" asp-input="StoreInformationSettings.StoreClosed" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
             <nop-label asp-for="StoreInformationSettings.StoreClosed" />
         </div>

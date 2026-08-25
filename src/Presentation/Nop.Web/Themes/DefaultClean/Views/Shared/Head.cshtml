@@ -11,6 +11,7 @@
 
     //add main CSS file
     NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/styles{(supportRtl ? ".rtl" : "")}.css");
+    NopHtml.AddCssFileParts($"~/Themes/{themeName}/Content/css/agent-interaction.css");
     
     //add swiper css file
     if (catalogSettings.DisplayAllPicturesOnCatalogPages)

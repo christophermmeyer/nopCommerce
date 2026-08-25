@@ -843,6 +843,27 @@ public class LocalizationMigration : MigrationBase
             ["Admin.Catalog.Products.Fields.PriceLists"] = "Price lists",
             ["Admin.Catalog.Products.Fields.PriceLists.Hint"] = "Choose price lists of this product.",
             ["Admin.Catalog.Products.Fields.PriceLists.NoPriceList"] = "No price lists available. Create at least one price list before mapping.",
+
+            ["Admin.Configuration.Settings.GeneralCommon.DisplayAgentInteractionWindow"] = "Display agent interaction window",
+            ["Admin.Configuration.Settings.GeneralCommon.DisplayAgentInteractionWindow.Hint"] = "Check to show a chat window on the public store so customers can talk to the platform.",
+            ["AgentInteraction.Title"] = "Store assistant",
+            ["AgentInteraction.Toggle"] = "Chat with the store",
+            ["AgentInteraction.Close"] = "Close",
+            ["AgentInteraction.Placeholder"] = "Ask about orders, shipping, products, or your account",
+            ["AgentInteraction.Send"] = "Send",
+            ["AgentInteraction.Empty"] = "Ask a question and we will help you find the right place in the store.",
+            ["AgentInteraction.Error.Generic"] = "Something went wrong. Please try again.",
+            ["AgentInteraction.Error.MessageRequired"] = "Please enter a message.",
+            ["AgentInteraction.Error.MessageTooLong"] = "That message is too long. Please shorten it and try again.",
+            ["AgentInteraction.Reply.Greeting"] = "Hi! I can help you around {0}. Ask about orders, shipping, returns, products, or your account.",
+            ["AgentInteraction.Reply.OrderStatus"] = "To check an order, sign in and open My account > Orders. You can see status, invoices, and shipment tracking there.",
+            ["AgentInteraction.Reply.Shipping"] = "Shipping options are shown at checkout based on your address and the items in your cart. Open an order in My account for tracking once it has shipped.",
+            ["AgentInteraction.Reply.Returns"] = "If an order is eligible, you can start a return from the order details page in My account. Contact us if you do not see a return option.",
+            ["AgentInteraction.Reply.Payment"] = "Available payment methods are listed at checkout. If a payment failed, try again from the order or contact us with the order number.",
+            ["AgentInteraction.Reply.Account"] = "Use My account to update your details, addresses, and password. If you cannot sign in, use Forgot password on the login page.",
+            ["AgentInteraction.Reply.ProductSearch"] = "Use the search box at the top of the store to find products. You can also browse categories from the main menu.",
+            ["AgentInteraction.Reply.Contact"] = "For anything I cannot answer, use the Contact us page. Include your order number if you have one.",
+            ["AgentInteraction.Reply.Unknown"] = "I can help with orders, shipping, returns, products, payments, and your account. Try one of those, or use Contact us for a person.",
         });
 
         #endregion

@@ -44,6 +44,10 @@ public partial record StoreInformationSettingsModel : BaseNopModel, ISettingsMod
     public bool DisplayEuCookieLawWarning { get; set; }
     public bool DisplayEuCookieLawWarning_OverrideForStore { get; set; }
 
+    [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.DisplayAgentInteractionWindow")]
+    public bool DisplayAgentInteractionWindow { get; set; }
+    public bool DisplayAgentInteractionWindow_OverrideForStore { get; set; }
+
     [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.FacebookLink")]
     public string FacebookLink { get; set; }
     public bool FacebookLink_OverrideForStore { get; set; }
