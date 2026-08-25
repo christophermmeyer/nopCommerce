@@ -1,0 +1,208 @@
+.agent-interaction {
+  position: fixed;
+  inset-inline-end: 20px;
+  bottom: 20px;
+  z-index: 1040;
+  font-size: 14px;
+}
+
+.agent-interaction-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--accent-blue-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  padding: 10px 16px 10px 12px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.agent-interaction-toggle:hover,
+.agent-interaction-toggle:focus {
+  background-color: var(--accent-blue-active-color);
+}
+
+.agent-interaction-toggle-icon {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  position: relative;
+}
+
+.agent-interaction-toggle-icon:after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  bottom: -5px;
+  border-width: 5px 5px 0 0;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.agent-interaction.is-open .agent-interaction-toggle {
+  display: none;
+}
+
+.agent-interaction-window {
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  max-height: min(480px, calc(100vh - 40px));
+}
+
+.agent-interaction-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--accent-blue-color);
+  color: #fff;
+  padding: 10px 12px;
+}
+
+.agent-interaction-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.agent-interaction-close {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.agent-interaction-messages {
+  overflow-y: auto;
+  padding: 12px;
+  min-height: 180px;
+  max-height: 280px;
+  background: #f7f7f7;
+}
+
+.agent-interaction-empty {
+  margin: 24px 8px;
+  color: var(--gray-color);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.agent-interaction-message {
+  margin-bottom: 10px;
+  max-width: 85%;
+}
+
+.agent-interaction-message.customer {
+  margin-inline-start: auto;
+}
+
+.agent-interaction-message.agent {
+  margin-inline-end: auto;
+}
+
+.agent-interaction-message-text {
+  padding: 8px 10px;
+  border-radius: 8px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.agent-interaction-message.customer .agent-interaction-message-text {
+  background-color: var(--accent-blue-color);
+  color: #fff;
+}
+
+.agent-interaction-message.agent .agent-interaction-message-text {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: var(--dark-gray-color);
+}
+
+.agent-interaction-message-time {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--gray-color);
+}
+
+.agent-interaction-message.customer .agent-interaction-message-time {
+  text-align: end;
+}
+
+.agent-interaction-form {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid #e5e5e5;
+  background: #fff;
+}
+
+.agent-interaction-form textarea {
+  flex: 1;
+  min-height: 44px;
+  max-height: 90px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font: inherit;
+}
+
+.agent-interaction-send {
+  align-self: flex-end;
+  min-width: 72px;
+  border: none;
+  background-color: var(--accent-blue-color);
+  color: #fff;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.agent-interaction-send:hover,
+.agent-interaction-send:focus {
+  background-color: var(--accent-blue-active-color);
+}
+
+.agent-interaction-send:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.agent-interaction-error {
+  margin: 0;
+  padding: 0 10px 10px;
+  color: var(--error-red-color);
+}
+
+.agent-interaction .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .agent-interaction {
+    inset-inline-end: 12px;
+    bottom: 12px;
+    inset-inline-start: 12px;
+  }
+
+  .agent-interaction-window {
+    width: 100%;
+  }
+}

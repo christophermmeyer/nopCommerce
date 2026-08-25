@@ -678,6 +678,11 @@ public static partial class NopRouteNames
         public const string EU_COOKIE_LAW_ACCEPT = "EuCookieLawAccept";
 
         /// <summary>
+        /// Gets the storefront agent interaction send message route name
+        /// </summary>
+        public const string AGENT_INTERACTION_SEND = "AgentInteractionSend";
+
+        /// <summary>
         /// Gets the authenticate topic route name
         /// </summary>
         public const string TOPIC_AUTHENTICATE = "TopicAuthenticate";

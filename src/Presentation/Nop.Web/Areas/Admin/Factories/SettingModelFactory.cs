@@ -459,6 +459,7 @@ public partial class SettingModelFactory : ISettingModelFactory
             AllowCustomerToSelectTheme = storeInformationSettings.AllowCustomerToSelectTheme,
             LogoPictureId = storeInformationSettings.LogoPictureId,
             DisplayEuCookieLawWarning = storeInformationSettings.DisplayEuCookieLawWarning,
+            DisplayAgentInteractionWindow = storeInformationSettings.DisplayAgentInteractionWindow,
             FacebookLink = storeInformationSettings.FacebookLink,
             XLink = storeInformationSettings.XLink,
             YoutubeLink = storeInformationSettings.YoutubeLink,
@@ -484,6 +485,7 @@ public partial class SettingModelFactory : ISettingModelFactory
         model.AllowCustomerToSelectTheme_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.AllowCustomerToSelectTheme, storeId);
         model.LogoPictureId_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.LogoPictureId, storeId);
         model.DisplayEuCookieLawWarning_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.DisplayEuCookieLawWarning, storeId);
+        model.DisplayAgentInteractionWindow_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.DisplayAgentInteractionWindow, storeId);
         model.FacebookLink_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.FacebookLink, storeId);
         model.XLink_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.XLink, storeId);
         model.YoutubeLink_OverrideForStore = await _settingService.SettingExistsAsync(storeInformationSettings, x => x.YoutubeLink, storeId);

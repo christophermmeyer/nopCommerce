@@ -147,6 +147,8 @@ public class SettingMigration : MigrationBase
 
         //#8229
         this.SetSettingIfNotExists<ReturnRequestSettings, bool>(settings => settings.DownloadableProductsReturnRequestsAllowed, false);
+
+        this.SetSettingIfNotExists<StoreInformationSettings, bool>(settings => settings.DisplayAgentInteractionWindow, true);
     }
 
     public override void Down()

@@ -8181,6 +8181,12 @@
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayEuCookieLawWarning.Hint">
     <Value>Make the site EU cookie law compliant. When enabled, new customers will see an appropriate warning box.</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayAgentInteractionWindow">
+    <Value>Display agent interaction window</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayAgentInteractionWindow.Hint">
+    <Value>Check to show a chat window on the public store so customers can talk to the platform.</Value>
+  </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.EnableHtmlMinification">
     <Value>HTML minification</Value>
   </LocaleResource>
@@ -18588,6 +18594,60 @@
   </LocaleResource>
   <LocaleResource Name="EUCookieLaw.LearnMore">
     <Value>Learn more</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Title">
+    <Value>Store assistant</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Toggle">
+    <Value>Chat with the store</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Close">
+    <Value>Close</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Placeholder">
+    <Value>Ask about orders, shipping, products, or your account</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Send">
+    <Value>Send</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Empty">
+    <Value>Ask a question and we will help you find the right place in the store.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Error.Generic">
+    <Value>Something went wrong. Please try again.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Error.MessageRequired">
+    <Value>Please enter a message.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Error.MessageTooLong">
+    <Value>That message is too long. Please shorten it and try again.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Greeting">
+    <Value>Hi! I can help you around {0}. Ask about orders, shipping, returns, products, or your account.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.OrderStatus">
+    <Value>To check an order, sign in and open My account &gt; Orders. You can see status, invoices, and shipment tracking there.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Shipping">
+    <Value>Shipping options are shown at checkout based on your address and the items in your cart. Open an order in My account for tracking once it has shipped.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Returns">
+    <Value>If an order is eligible, you can start a return from the order details page in My account. Contact us if you do not see a return option.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Payment">
+    <Value>Available payment methods are listed at checkout. If a payment failed, try again from the order or contact us with the order number.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Account">
+    <Value>Use My account to update your details, addresses, and password. If you cannot sign in, use Forgot password on the login page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.ProductSearch">
+    <Value>Use the search box at the top of the store to find products. You can also browse categories from the main menu.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Contact">
+    <Value>For anything I cannot answer, use the Contact us page. Include your order number if you have one.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AgentInteraction.Reply.Unknown">
+    <Value>I can help with orders, shipping, returns, products, payments, and your account. Try one of those, or use Contact us for a person.</Value>
   </LocaleResource>
   <LocaleResource Name="Filtering.ManufacturerFilter">
     <Value>Filter by manufacturer</Value>

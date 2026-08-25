@@ -39,6 +39,11 @@ public partial class StoreInformationSettings : ISettings
     public bool DisplayEuCookieLawWarning { get; set; }
 
     /// <summary>
+    /// Gets or sets a value indicating whether the storefront agent interaction window is displayed
+    /// </summary>
+    public bool DisplayAgentInteractionWindow { get; set; }
+
+    /// <summary>
     /// Gets or sets a value of Facebook page URL of the site
     /// </summary>
     public string FacebookLink { get; set; }

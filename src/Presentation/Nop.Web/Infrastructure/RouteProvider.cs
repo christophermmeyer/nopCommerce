@@ -564,6 +564,10 @@ public partial class RouteProvider : BaseRouteProvider, IRouteProvider
             pattern: $"eucookielawaccept",
             defaults: new { controller = "Common", action = "EuCookieLawAccept" });
 
+        endpointRouteBuilder.MapControllerRoute(name: NopRouteNames.Ajax.AGENT_INTERACTION_SEND,
+            pattern: $"agentinteraction/sendmessage",
+            defaults: new { controller = "AgentInteraction", action = "SendMessage" });
+
         //authenticate topic (AJAX)
         endpointRouteBuilder.MapControllerRoute(name: NopRouteNames.Ajax.TOPIC_AUTHENTICATE,
             pattern: $"topic/authenticate",

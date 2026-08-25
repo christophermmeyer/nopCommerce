@@ -1764,6 +1764,7 @@ public partial class InstallationService
             DefaultStoreTheme = "DefaultClean",
             AllowCustomerToSelectTheme = false,
             DisplayEuCookieLawWarning = isEurope,
+            DisplayAgentInteractionWindow = true,
             FacebookLink = "https://www.facebook.com/nopCommerce",
             XLink = "https://x.com/nopCommerce",
             YoutubeLink = "https://www.youtube.com/user/nopCommerce",

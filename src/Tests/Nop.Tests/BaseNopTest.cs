@@ -329,6 +329,7 @@ public partial class BaseNopTest
         services.AddScoped(typeof(IAttributeFormatter<,>), typeof(AttributeFormatter<,>));
 
         services.AddTransient<ISearchTermService, SearchTermService>();
+        services.AddTransient<IAgentInteractionService, AgentInteractionService>();
         services.AddTransient<IGenericAttributeService, GenericAttributeService>();
         services.AddTransient<IMaintenanceService, MaintenanceService>();
         services.AddTransient<ICustomerService, CustomerService>();
