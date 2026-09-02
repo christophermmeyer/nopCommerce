@@ -13552,6 +13552,9 @@
   <LocaleResource Name="Admin.Menu.Search">
     <Value>Search</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Menu.Sidebar.Sections">
+    <Value>Admin sections</Value>
+  </LocaleResource>
   <LocaleResource Name="Admin.NopCommerceNews">
     <Value>NopCommerce News</Value>
   </LocaleResource>

@@ -1,0 +1,38 @@
+@model Nop.Web.Framework.Menu.AdminSidebarItemModel
+
+@if (Model.IsGroup)
+{
+    <li class="admin-nav-group @(Model.IsExpanded ? "is-open" : null) @(Model.IsActive ? "is-current" : null)">
+        <button type="button" class="admin-nav-group-toggle" aria-expanded="@Model.IsExpanded.ToString().ToLowerInvariant()">
+            @if (!string.IsNullOrEmpty(Model.IconClass))
+            {
+                <i class="nav-icon @Model.IconClass"></i>
+            }
+            <span>@Model.Title</span>
+            <i class="admin-nav-group-caret fas fa-chevron-down"></i>
+        </button>
+        <ul class="admin-nav-group-items">
+            @foreach (var child in Model.Items)
+            {
+                @await Html.PartialAsync("_SidebarPanelItem", child)
+            }
+        </ul>
+    </li>
+}
+else if (!string.IsNullOrEmpty(Model.Url))
+{
+    <li class="nav-item @(Model.IsActive ? "current-active-item" : null)">
+        <a href="@Model.Url"
+           class="nav-link admin-nav-link@(Model.IsActive ? " active" : null)"
+           data-nav-title="@Model.Title"
+           data-nav-parent="@Model.ParentTitle"
+           data-nav-grandparent="@Model.GrandParentTitle"
+           @(Model.OpenUrlInNewTab ? Html.Raw(" target=\"_blank\" rel=\"noopener noreferrer\"") : null)>
+            @if (!string.IsNullOrEmpty(Model.IconClass))
+            {
+                <i class="nav-icon @Model.IconClass"></i>
+            }
+            <p>@Model.Title</p>
+        </a>
+    </li>
+}

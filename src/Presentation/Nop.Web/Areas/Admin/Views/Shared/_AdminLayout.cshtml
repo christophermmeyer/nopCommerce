@@ -49,7 +49,7 @@
     @*Insert favicon and app icons head code*@
     @await Component.InvokeAsync(typeof(FaviconViewComponent))
 </head>
-<body class="hold-transition sidebar-mini layout-fixed control-sidebar-slide-open">
+<body class="hold-transition sidebar-mini layout-fixed control-sidebar-slide-open admin-sidebar-scheme">
     <div class="throbber">
         <div class="curtain">
         </div>
@@ -155,29 +155,21 @@
         }
         else
         {
-            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <aside class="main-sidebar sidebar-dark-primary elevation-4 admin-sidebar">
                 <!-- Brand Logo -->
                 <a href="@Url.Content("~/Admin")" class="brand-link navbar-dark logo-switch">
                     <img src="~/css/admin/images/logo.png" alt="logo.png" class="brand-image-xl logo-xl">
                     <img src="~/css/admin/images/logo-mini.png" alt="logo.png" class="brand-image-xs logo-xs">
                 </a>
                 <div class="sidebar">
-                    <div class="sidebar-form">
-                        <div id="search-box">
-                            <input type="text" class="form-control admin-search-box typeahead" placeholder="@T("Admin.Menu.Search")">
-                        </div>
-                    </div>
-                    <nav class="mt-2">
-                        @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.SearchBoxBefore })
-                        <script>
-                            $(function() {
-                                Admin.Search.init();
-                            });
-                        </script>
-                        @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.MenuBefore })
-                        @await Html.PartialAsync("Menu")
-
-                    </nav>
+                    @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.SearchBoxBefore })
+                    @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.MenuBefore })
+                    @await Html.PartialAsync("Menu")
+                    <script>
+                        $(function() {
+                            Admin.Search.init();
+                        });
+                    </script>
                 </div>
             </aside>
         }

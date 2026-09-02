@@ -843,6 +843,8 @@ public class LocalizationMigration : MigrationBase
             ["Admin.Catalog.Products.Fields.PriceLists"] = "Price lists",
             ["Admin.Catalog.Products.Fields.PriceLists.Hint"] = "Choose price lists of this product.",
             ["Admin.Catalog.Products.Fields.PriceLists.NoPriceList"] = "No price lists available. Create at least one price list before mapping.",
+
+            ["Admin.Menu.Sidebar.Sections"] = "Admin sections",
         });
 
         #endregion
