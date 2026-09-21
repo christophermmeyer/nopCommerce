@@ -43,6 +43,7 @@ using Nop.Services.Customers;
 using Nop.Services.Helpers;
 using Nop.Services.Media;
 using Nop.Services.Messages;
+using Nop.Services.Payments;
 using Nop.Services.Reminders;
 using Nop.Services.Seo;
 
@@ -1953,7 +1954,7 @@ public partial class InstallationService
 
         await SaveSettingAsync(dictionary, new PaymentSettings
         {
-            ActivePaymentMethodSystemNames = ["Payments.CheckMoneyOrder", "Payments.Manual"],
+            ActivePaymentMethodSystemNames = [.. PublicStorefrontPaymentDefaults.ActivePaymentMethodSystemNames],
             AllowRePostingPayments = true,
             BypassPaymentMethodSelectionIfOnlyOne = true,
             ShowPaymentMethodDescriptions = true,

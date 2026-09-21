@@ -37,6 +37,7 @@ public class CheckoutModelFactoryTests : ServiceTest
     private IPaymentMethod _paymentMethod;
     private CommonSettings _commonSettings;
     private IOrderService _orderService;
+    private List<string> _originalActivePaymentMethodSystemNames;
 
     [OneTimeSetUp]
     public async Task SetUp()
@@ -50,6 +51,7 @@ public class CheckoutModelFactoryTests : ServiceTest
         await _settingService.SaveSettingAsync(_shippingSettings);
 
         _paymentSettings = GetService<PaymentSettings>();
+        _originalActivePaymentMethodSystemNames = [.. _paymentSettings.ActivePaymentMethodSystemNames];
         _paymentSettings.ActivePaymentMethodSystemNames.Add("Payments.TestMethod");
         await _settingService.SaveSettingAsync(_paymentSettings);
 
@@ -92,7 +94,7 @@ public class CheckoutModelFactoryTests : ServiceTest
         _shippingSettings.ActiveShippingRateComputationMethodSystemNames.Clear();
         await _settingService.SaveSettingAsync(_shippingSettings);
 
-        _paymentSettings.ActivePaymentMethodSystemNames.Clear();
+        _paymentSettings.ActivePaymentMethodSystemNames = [.. _originalActivePaymentMethodSystemNames];
         await _settingService.SaveSettingAsync(_paymentSettings);
 
         _rewardPointsSettings.Enabled = true;

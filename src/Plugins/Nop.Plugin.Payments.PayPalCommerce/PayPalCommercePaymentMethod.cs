@@ -339,8 +339,8 @@ public class PayPalCommercePaymentMethod : BasePlugin, IPaymentMethod, IWidgetPl
             SkipOrderConfirmPage = false,
             UseShipmentTracking = false,
             DisplayButtonsOnPaymentMethod = true,
-            DisplayButtonsOnProductDetails = true,
-            DisplayButtonsOnShoppingCart = true,
+            DisplayButtonsOnProductDetails = false,
+            DisplayButtonsOnShoppingCart = false,
             DisplayLogoInHeaderLinks = false,
             DisplayLogoInFooter = false,
             RequestTimeout = PayPalCommerceDefaults.RequestTimeout,
@@ -369,12 +369,8 @@ public class PayPalCommercePaymentMethod : BasePlugin, IPaymentMethod, IWidgetPl
                 "border=\"0\" alt=\"PayPal Acceptance Mark\"></a></div><!-- PayPal Logo -->",
         });
 
-        if (!_paymentSettings.ActivePaymentMethodSystemNames.Contains(PayPalCommerceDefaults.SystemName))
-        {
-            _paymentSettings.ActivePaymentMethodSystemNames.Add(PayPalCommerceDefaults.SystemName);
-            await _settingService.SaveSettingAsync(_paymentSettings);
-        }
-
+        // Leave PayPal inactive as a payment method until credentials exist.
+        // Keep the widget so admin onboarding still appears; PDP/cart buttons stay off.
         if (!_widgetSettings.ActiveWidgetSystemNames.Contains(PayPalCommerceDefaults.SystemName))
         {
             _widgetSettings.ActiveWidgetSystemNames.Add(PayPalCommerceDefaults.SystemName);
