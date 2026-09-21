@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj" />
-    <ProjectReference Include="..\..\Plugins\Nop.Plugin.Payments.Manual\Nop.Plugin.Payments.Manual.csproj" />
   </ItemGroup>
 
   <ItemGroup>
