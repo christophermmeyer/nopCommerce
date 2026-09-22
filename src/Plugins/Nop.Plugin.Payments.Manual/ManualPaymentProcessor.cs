@@ -119,10 +119,8 @@ public class ManualPaymentProcessor : BasePlugin, IPaymentMethod, IWidgetPlugin
     /// </returns>
     public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart)
     {
-        //you can put any logic here
-        //for example, hide this payment method if all products in the cart are downloadable
-        //or hide this payment method if current customer is from certain country
-        return Task.FromResult(false);
+        // Public checkout must not collect or store raw PAN/CVV.
+        return Task.FromResult(true);
     }
 
     /// <summary>
