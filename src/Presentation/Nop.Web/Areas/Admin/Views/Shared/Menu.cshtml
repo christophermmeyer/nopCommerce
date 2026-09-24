@@ -2,12 +2,91 @@
 
 @inject IAdminMenu siteMap;
 
-<ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu">
-    @{
-        //display menu items
-        foreach (var item in (await siteMap.GetRootNodeAsync()).ChildNodes.Where(n => n.Visible))
+@{
+    var scheme = AdminSidebarSchemeBuilder.Build(await siteMap.GetRootNodeAsync(), NopHtml.GetActiveMenuItemSystemName());
+}
+
+<div class="admin-nav" data-admin-nav>
+    <div class="admin-nav-rail" role="tablist" aria-label="@T("Admin.Menu.Sidebar.Sections")">
+        @foreach (var section in scheme.Sections)
         {
-            @await Html.PartialAsync("_MenuItem", item)
+            var railClasses = "admin-nav-rail-item" + (section.IsActive ? " active" : string.Empty);
+            if (section.IsLeaf)
+            {
+                <a class="@railClasses"
+                   href="@section.Url"
+                   data-section="@section.SystemName"
+                   title="@section.Title"
+                   @(section.OpenUrlInNewTab ? Html.Raw(" target=\"_blank\" rel=\"noopener noreferrer\"") : null)>
+                    <i class="@section.IconClass"></i>
+                    <span class="sr-only">@section.Title</span>
+                </a>
+            }
+            else
+            {
+                <button type="button"
+                        class="@railClasses"
+                        id="admin-nav-tab-@section.HtmlId"
+                        role="tab"
+                        data-section="@section.SystemName"
+                        data-has-panel="true"
+                        title="@section.Title"
+                        aria-selected="@section.IsActive.ToString().ToLowerInvariant()"
+                        aria-controls="admin-nav-panel-@section.HtmlId">
+                    <i class="@section.IconClass"></i>
+                    <span class="sr-only">@section.Title</span>
+                </button>
+            }
         }
-    }
-</ul>
+    </div>
+    <div class="admin-nav-body">
+        <div class="sidebar-form">
+            <div id="search-box">
+                <input type="text" class="form-control admin-search-box typeahead" placeholder="@T("Admin.Menu.Search")">
+            </div>
+        </div>
+        <div class="admin-nav-panels">
+            @{
+                var activeLeaf = scheme.Sections.FirstOrDefault(section => section.IsActive && section.IsLeaf);
+            }
+            @if (activeLeaf != null)
+            {
+                <section class="admin-nav-panel is-active" data-section="@activeLeaf.SystemName">
+                    <h2 class="admin-nav-panel-title">@activeLeaf.Title</h2>
+                    <ul class="nav nav-pills nav-sidebar flex-column admin-nav-list" role="menu">
+                        <li class="nav-item current-active-item">
+                            <a href="@activeLeaf.Url"
+                               class="nav-link admin-nav-link active"
+                               data-nav-title="@activeLeaf.Title">
+                                <i class="nav-icon @activeLeaf.IconClass"></i>
+                                <p>@activeLeaf.Title</p>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            }
+            @foreach (var section in scheme.Sections.Where(s => !s.IsLeaf))
+            {
+                <section class="admin-nav-panel@(section.IsActive ? " is-active" : null)"
+                         id="admin-nav-panel-@section.HtmlId"
+                         data-section="@section.SystemName"
+                         role="tabpanel"
+                         aria-labelledby="admin-nav-tab-@section.HtmlId"
+                         @(section.IsActive ? null : Html.Raw("hidden"))>
+                    <h2 class="admin-nav-panel-title">@section.Title</h2>
+                    <ul class="nav nav-pills nav-sidebar flex-column admin-nav-list" role="menu">
+                        @foreach (var item in section.Items)
+                        {
+                            @await Html.PartialAsync("_SidebarPanelItem", item)
+                        }
+                    </ul>
+                </section>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        Admin.SidebarScheme.init();
+    });
+</script>

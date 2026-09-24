@@ -1,52 +1,55 @@
 ﻿var Admin = Admin || {};
 
 Admin.Navigation = (function () {
+    var readTitle = function ($link) {
+        var dataTitle = $link.attr("data-nav-title");
+        if (dataTitle)
+            return dataTitle;
+
+        return $.trim($link.find("p").text());
+    };
+
     var buildMap = function () {
         var map = {};
 
         var linkElements = $("a.nav-link");
 
         linkElements.each(function () {
-            var parents = $(this).parentsUntil(".nav-sidebar");
-            var href;
-            var title;
-            var parent;
-            var grandParent;
-            switch (parents.length) {
-                // items in level one
-                case 1:
-                    {
-                        href = $(parents).find("a").attr("href");
-                        title = $(parents).find("a").find("p").html();
-                        map[href] = { title: title, link: href, parent: null, grandParent: null };
+            var $link = $(this);
+            var href = $link.attr("href");
+            if (!href || href === "#")
+                return;
 
-                        break;
-                    }
-                    // items in level two, these items have parent but have not grand parent
-                case 3:
-                    {
-                        href = $(parents).eq(0).find("a").attr("href");
-                        title = $(parents).eq(0).find("a").find("p").html();
-                        parent = $(parents).eq(2).find("a").find("p").html();
-                        parent = parent.substring(0, parent.indexOf("<i class"));
-                        map[href] = { title: title, link: href, parent: parent, grandParent: null };
+            var title = readTitle($link);
+            var parent = $link.attr("data-nav-parent") || null;
+            var grandParent = $link.attr("data-nav-grandparent") || null;
 
+            if (!parent) {
+                var parents = $link.parentsUntil(".nav-sidebar");
+                switch (parents.length) {
+                    case 3:
+                        {
+                            parent = $(parents).eq(2).find("a").find("p").html();
+                            if (parent)
+                                parent = parent.substring(0, parent.indexOf("<i class"));
+                            break;
+                        }
+                    case 5:
+                        {
+                            parent = $(parents).eq(2).find("a").find("p").html();
+                            grandParent = $(parents).eq(4).find("a").find("p").html();
+                            if (parent)
+                                parent = parent.substring(0, parent.indexOf("<i class"));
+                            if (grandParent)
+                                grandParent = grandParent.substring(0, grandParent.indexOf("<i class"));
+                            break;
+                        }
+                    default:
                         break;
-                    }
-                    // items in level three, these items have both parent and grand parent
-                case 5:
-                    {
-                        href = $(parents).eq(0).find("a").attr("href");
-                        title = $(parents).eq(0).find("a").find("p").html();
-                        parent = $(parents).eq(2).find("a").find("p").html();
-                        parent = parent.substring(0, parent.indexOf("<i class"));
-                        grandParent = $(parents).eq(4).find("a").find("p").html();
-                        grandParent = grandParent.substring(0, grandParent.indexOf("<i class"));
-                        map[href] = { title: title, link: href, parent: parent, grandParent: grandParent };
-                        break;
-                    }
-                default: break;
+                }
             }
+
+            map[href] = { title: title, link: href, parent: parent, grandParent: grandParent };
         });
 
         return map;
