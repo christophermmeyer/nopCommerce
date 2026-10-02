@@ -158,6 +158,7 @@ public partial class NopStartup : INopStartup
         services.AddScoped<IAddressService, AddressService>();
         services.AddScoped<IAffiliateService, AffiliateService>();
         services.AddScoped<IArtificialIntelligenceService, ArtificialIntelligenceService>();
+        services.AddScoped<IAiAgentService, AiAgentService>();
         services.AddScoped<IVendorService, VendorService>();
         services.AddScoped<ISearchTermService, SearchTermService>();
         services.AddScoped<IGenericAttributeService, GenericAttributeService>();

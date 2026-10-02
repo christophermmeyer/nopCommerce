@@ -1,0 +1,108 @@
+@model AiAgentListModel
+
+@{
+    ViewBag.PageTitle = T("Admin.Configuration.AiAgents").Text;
+    NopHtml.SetActiveMenuItemSystemName("AI agents");
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.Configuration.AiAgents")
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-square-plus"></i>
+            @T("Admin.Configuration.AiAgents.AddNew")
+        </a>
+        <form asp-action="LoadExamples" method="post" class="d-inline">
+            <button type="submit" class="btn btn-default">
+                @T("Admin.Configuration.AiAgents.LoadExamples")
+            </button>
+        </form>
+        @if (Model.Agents.Any())
+        {
+            <form asp-action="RemoveAll" method="post" class="d-inline" onsubmit="return confirm('@T("Admin.Configuration.AiAgents.RemoveAllConfirm")');">
+                <button type="submit" class="btn btn-danger">
+                    @T("Admin.Configuration.AiAgents.RemoveAll")
+                </button>
+            </form>
+        }
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="alert alert-info">
+            @T("Admin.Configuration.AiAgents.PrototypeBanner")
+        </div>
+
+        @if (!Model.Agents.Any())
+        {
+            <div class="card card-default">
+                <div class="card-body text-center" style="padding: 48px 24px;">
+                    <h3>@T("Admin.Configuration.AiAgents.Empty.Title")</h3>
+                    <p class="text-muted" style="max-width: 460px; margin: 0 auto 16px;">
+                        @T("Admin.Configuration.AiAgents.Empty.Text")
+                    </p>
+                    <a asp-action="Create" class="btn btn-primary">
+                        @T("Admin.Configuration.AiAgents.Empty.AddFirst")
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card card-default">
+                <div class="card-header">
+                    @T("Admin.Configuration.AiAgents.ConfiguredAgents")
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>@T("Admin.Configuration.AiAgents.Fields.Name")</th>
+                                <th>@T("Admin.Configuration.AiAgents.Fields.Provider")</th>
+                                <th>@T("Admin.Configuration.AiAgents.Fields.Role")</th>
+                                <th>@T("Admin.Configuration.AiAgents.Fields.Status")</th>
+                                <th>@T("Admin.Configuration.AiAgents.Fields.LastCheck")</th>
+                                <th>@T("Admin.Configuration.AiAgents.Fields.Updated")</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var agent in Model.Agents)
+                            {
+                                <tr>
+                                    <td><strong>@agent.Name</strong></td>
+                                    <td>@agent.ProviderName</td>
+                                    <td>@agent.RoleName</td>
+                                    <td><span class="badge @agent.DisplayStatusCss">@agent.DisplayStatus</span></td>
+                                    <td>
+                                        <span class="badge @agent.LastCheckCss">@agent.LastCheck</span>
+                                        @if (!string.IsNullOrEmpty(agent.LastConnectionMessage))
+                                        {
+                                            <div class="text-muted" style="margin-top: 4px; max-width: 280px;">@agent.LastConnectionMessage</div>
+                                        }
+                                    </td>
+                                    <td>@agent.UpdatedOn</td>
+                                    <td class="text-nowrap">
+                                        <a asp-action="Edit" asp-route-id="@agent.Id">@T("Admin.Common.Edit")</a>
+                                        <a asp-action="Review" asp-route-id="@agent.Id">@T("Admin.Configuration.AiAgents.Review.Title")</a>
+                                        <form asp-action="Delete" asp-route-id="@agent.Id" method="post" class="d-inline" onsubmit="return confirm('@T("Admin.Common.DeleteConfirmation")');">
+                                            <button type="submit" class="btn btn-link">@T("Admin.Common.Delete")</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        <div class="alert alert-info">
+            <strong>@T("Admin.Configuration.AiAgents.Callout")</strong>
+            <div>@T("Admin.Configuration.AiAgents.CheckLegend")</div>
+        </div>
+    </div>
+</section>

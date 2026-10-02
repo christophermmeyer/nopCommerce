@@ -557,6 +557,14 @@ public partial class AdminMenu : IAdminMenu
                         },
                         new()
                         {
+                            SystemName = "AI agents",
+                            Title = await _localizationService.GetResourceAsync("Admin.Configuration.AiAgents"),
+                            PermissionNames = new List<string> { StandardPermission.Configuration.MANAGE_SETTINGS },
+                            Url = GetMenuItemUrl("AiAgent", "List"),
+                            IconClass = "far fa-dot-circle"
+                        },
+                        new()
+                        {
                             SystemName = "Email accounts",
                             Title = await _localizationService.GetResourceAsync("Admin.Configuration.EmailAccounts"),
                             PermissionNames = new List<string> { StandardPermission.Configuration.MANAGE_EMAIL_ACCOUNTS },

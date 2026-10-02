@@ -1,0 +1,125 @@
+@model AiAgentModel
+
+@{
+    ViewBag.PageTitle = T("Admin.Configuration.AiAgents.Review.Title").Text;
+    NopHtml.SetActiveMenuItemSystemName("AI agents");
+
+    var alertClass = Model.LastCheckCss == "badge-success" ? "alert-success"
+        : Model.LastCheckCss == "badge-danger" ? "alert-danger"
+        : Model.LastCheckCss == "badge-warning" ? "alert-warning"
+        : "alert-info";
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.Configuration.AiAgents.Review.Title") — @Model.Name
+        <small>
+            <i class="fas fa-arrow-circle-left"></i>
+            <a asp-action="List">@T("Admin.Configuration.AiAgents.BackToList")</a>
+        </small>
+    </h1>
+    <div class="float-right">
+        <span class="badge @Model.DisplayStatusCss">@Model.DisplayStatus</span>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="alert alert-info">@T("Admin.Configuration.AiAgents.PrototypeBanner")</div>
+
+        <div class="card card-default">
+            <div class="card-header">
+                @T("Admin.Configuration.AiAgents.Fields.LastCheck")
+            </div>
+            <div class="card-body">
+                <div class="alert @alertClass">
+                    <span class="badge @Model.LastCheckCss">@Model.LastCheck</span>
+                    <div style="margin-top: 8px;">
+                        @(string.IsNullOrEmpty(Model.LastConnectionMessage)
+                            ? T("Admin.Configuration.AiAgents.CheckLegend").Text
+                            : Model.LastConnectionMessage)
+                    </div>
+                </div>
+                <form asp-action="TestConnection" asp-route-id="@Model.Id" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-default">@T("Admin.Configuration.AiAgents.TestConnection")</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card card-default">
+            <div class="card-header">@T("Admin.Configuration.AiAgents.Review.Title")</div>
+            <div class="card-body p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>@T("Admin.Configuration.AiAgents.Permissions.Column.Capability")</th>
+                            <th>@T("Admin.Configuration.AiAgents.Permissions.Column.Access")</th>
+                            <th>@T("Admin.Configuration.AiAgents.Permissions.Column.Notes")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var row in Model.PermissionChoices)
+                        {
+                            <tr>
+                                <td><strong>@row.Title</strong></td>
+                                <td>@row.Access</td>
+                                <td>@row.Notes</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card card-default">
+            <div class="card-body">
+                <form asp-action="ConfirmReview" asp-route-id="@Model.Id" method="post">
+                    <div class="checkbox">
+                        <label>
+                            @if (Model.PermissionsReviewed)
+                            {
+                                <input type="checkbox" name="permissionsReviewed" value="true" checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="permissionsReviewed" value="true" />
+                            }
+                            @T("Admin.Configuration.AiAgents.Review.Confirm")
+                        </label>
+                    </div>
+                    <p class="text-muted">@T("Admin.Configuration.AiAgents.Review.ConfirmHint")</p>
+                    <button type="submit" class="btn btn-default">@T("Admin.Configuration.AiAgents.Review.Save")</button>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">@T("Admin.Configuration.AiAgents.Edit")</a>
+            <a asp-action="List" class="btn btn-default">@T("Admin.Configuration.AiAgents.BackToList")</a>
+            <form asp-action="Enable" asp-route-id="@Model.Id" method="post" class="d-inline">
+                @if (Model.CanEnable)
+                {
+                    <button type="submit" class="btn btn-primary">@T("Admin.Configuration.AiAgents.Enable")</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary" disabled="disabled">@T("Admin.Configuration.AiAgents.Enable")</button>
+                }
+            </form>
+            <form asp-action="Disable" asp-route-id="@Model.Id" method="post" class="d-inline">
+                @if (Model.Enabled)
+                {
+                    <button type="submit" class="btn btn-danger">@T("Admin.Configuration.AiAgents.Disable")</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-danger" disabled="disabled">@T("Admin.Configuration.AiAgents.Disable")</button>
+                }
+            </form>
+        </div>
+        @if (!Model.CanEnable)
+        {
+            <p class="text-muted" style="margin-top: 12px;">@T("Admin.Configuration.AiAgents.EnableBlocked")</p>
+        }
+    </div>
+</section>
