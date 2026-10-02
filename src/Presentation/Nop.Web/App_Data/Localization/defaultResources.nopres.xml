@@ -5694,6 +5694,339 @@
   <LocaleResource Name="Admin.Configuration.Currencies.Updated">
     <Value>The currency has been updated successfully.</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents">
+    <Value>AI agents</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Access.Allowed">
+    <Value>Allowed</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Access.Denied">
+    <Value>Denied</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.AddNew">
+    <Value>Add agent</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ApiKey.Masked">
+    <Value>Configured (masked)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ApiKey.Missing">
+    <Value>Not configured</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.BackToList">
+    <Value>back to AI agent list</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Callout">
+    <Value>Agents run only in admin contexts you enable. Customer-facing pages never receive provider keys.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.CheckLegend">
+    <Value>Misconfigured means the settings are incomplete or still a placeholder. Unreachable means the settings look complete but the endpoint is treated as a dead agent. Neither check contacts a live provider.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ConfiguredAgents">
+    <Value>Configured agents</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ConnectionWarning">
+    <Value>Do not paste production secrets. This prototype keeps a configured flag only. The key itself is not stored.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Deleted">
+    <Value>The agent has been deleted.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Disable">
+    <Value>Disable agent</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Disabled">
+    <Value>The agent is disabled.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Edit">
+    <Value>Edit agent</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Empty.AddFirst">
+    <Value>Add your first agent</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Empty.Text">
+    <Value>Add an agent to draft catalog copy, summarize orders for support, or generate SEO fields — with permissions you control.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Empty.Title">
+    <Value>No AI agents yet</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Enable">
+    <Value>Enable agent</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.EnableBlocked">
+    <Value>Enable stays locked until permissions are reviewed and Test connection succeeds.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Enabled">
+    <Value>The agent is enabled.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ExamplesAlreadyLoaded">
+    <Value>Example agents are already in the list.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ExamplesLoaded">
+    <Value>Example agents loaded. No credentials were stored.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.ApiKey">
+    <Value>API key</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.ApiKey.Hint">
+    <Value>Type any placeholder to mark a key configured. The value is discarded and never stored.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Description">
+    <Value>Description</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Description.Hint">
+    <Value>What this agent is for. Publishing stays with a human admin.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Endpoint">
+    <Value>Endpoint URL</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Endpoint.Hint">
+    <Value>https://api.example.com/v1 stays misconfigured. https://unreachable.invalid/v1 is a dead agent. Any other absolute https URL, such as https://catalog-assistant.test/v1, passes the prototype check.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.LastCheck">
+    <Value>Last check</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Model">
+    <Value>Model</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Model.Hint">
+    <Value>Model id. This prototype does not call the provider.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Name">
+    <Value>Display name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Name.Hint">
+    <Value>Shown in admin lists and permission reviews.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Name.MaxLength">
+    <Value>Display name must be 80 characters or fewer.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Name.Required">
+    <Value>Display name is required.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Provider">
+    <Value>Provider</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Role">
+    <Value>Primary role</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Status">
+    <Value>Status</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Fields.Updated">
+    <Value>Updated</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Intro">
+    <Value>Connect assistants that help with catalog content, support drafts, and admin workflows. Customer-facing pages never receive provider keys.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.LoadExamples">
+    <Value>Load example agents</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.NoAutoPublish">
+    <Value>No auto-publish</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.NotFound">
+    <Value>Agent was not found.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.DraftCategoryCopy">
+    <Value>Draft category copy</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.DraftCategoryCopy.Notes">
+    <Value>Drafts category text; admin must publish</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.DraftProductDescriptions">
+    <Value>Draft product descriptions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.DraftProductDescriptions.Notes">
+    <Value>Creates drafts only; admin must publish</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.DraftSupportReplies">
+    <Value>Draft support replies</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.DraftSupportReplies.Notes">
+    <Value>Creates drafts only; admin must send</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.PublishWithoutReview">
+    <Value>Publish without review</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.PublishWithoutReview.Notes">
+    <Value>Hard default. Requires a separate policy change</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadCustomerMessages">
+    <Value>Read customer messages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadCustomerMessages.Notes">
+    <Value>Message text only. This does not grant customer PII fields</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadCustomerPii">
+    <Value>Read customer PII</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadCustomerPii.Notes">
+    <Value>Blocks names, emails, addresses</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadOrderSummaries">
+    <Value>Read orders (summary only)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadOrderSummaries.Notes">
+    <Value>Order totals and status, not payment data</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadPaymentDetails">
+    <Value>Read payment details</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadPaymentDetails.Notes">
+    <Value>Never granted to agents</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadProductCatalog">
+    <Value>Read product catalog</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.ReadProductCatalog.Notes">
+    <Value>Attributes, existing descriptions, categories</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.SuggestSeoMeta">
+    <Value>Suggest SEO meta fields</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permission.SuggestSeoMeta.Notes">
+    <Value>Meta title and description suggestions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permissions.Column.Access">
+    <Value>Access</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permissions.Column.Capability">
+    <Value>Capability</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Permissions.Column.Notes">
+    <Value>Notes</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.PermissionsIntro">
+    <Value>Choose what this agent may read or draft. Publishing always stays with a human admin.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.PrototypeBanner">
+    <Value>Prototype. Connection fields stay masked. No live third-party credentials are stored or sent.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Provider.Anthropic">
+    <Value>Anthropic</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Provider.AzureOpenAi">
+    <Value>Azure OpenAI</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Provider.CustomEndpoint">
+    <Value>Custom endpoint</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Provider.OpenAiCompatible">
+    <Value>OpenAI-compatible</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.PublishDisabledHint">
+    <Value>Publish without review stays off and cannot be granted.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.RemoveAll">
+    <Value>Remove all agents</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.RemoveAllConfirm">
+    <Value>Remove every AI agent from this prototype list?</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.RemovedAll">
+    <Value>All AI agents were removed.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Reveal">
+    <Value>Reveal</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Review.Confirm">
+    <Value>I have reviewed these permissions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Review.ConfirmHint">
+    <Value>Recording a review does not enable the agent.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Review.Save">
+    <Value>Save review</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Review.Title">
+    <Value>Permissions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ReviewCleared">
+    <Value>Permissions review cleared. The agent cannot be enabled.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.ReviewConfirmed">
+    <Value>Permissions review recorded. Enable stays locked until Test connection succeeds.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Role.CategorySummaries">
+    <Value>Category summaries</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Role.Custom">
+    <Value>Custom (advanced)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Role.CustomerServiceDrafts">
+    <Value>Customer service drafts</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Role.MetaTitlesAndDescriptions">
+    <Value>Meta titles &amp; descriptions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Role.ProductDescriptions">
+    <Value>Product descriptions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.SaveHint">
+    <Value>Save keeps the agent disabled until you review permissions and Test connection succeeds.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Saved">
+    <Value>Agent saved and left disabled. Review permissions, then run Test connection before enable.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.Disabled">
+    <Value>Disabled</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.Enabled">
+    <Value>Enabled</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.Misconfigured">
+    <Value>Misconfigured</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.NeedsReview">
+    <Value>Needs review</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.NotTested">
+    <Value>Not tested</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.Success">
+    <Value>OK</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Status.Unreachable">
+    <Value>Unreachable</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Steps.BasicsTitle">
+    <Value>Step 1 — Basics</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Steps.ConnectionTitle">
+    <Value>Step 2 — Connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Steps.PermissionsTitle">
+    <Value>Step 3 — Permissions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Steps.ReviewTitle">
+    <Value>Step 4 — Review and save</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.TestConnection">
+    <Value>Test connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.Basics">
+    <Value>1. Basics</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.BasicsHint">
+    <Value>Name and role</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.Connection">
+    <Value>2. Connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.ConnectionHint">
+    <Value>Provider, no real keys</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.Permissions">
+    <Value>3. Permissions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.PermissionsHint">
+    <Value>What it can touch</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.Review">
+    <Value>4. Review</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.AiAgents.Wizard.ReviewHint">
+    <Value>Confirm and save</Value>
+  </LocaleResource>
   <LocaleResource Name="Admin.Configuration.EmailAccounts">
     <Value>Email accounts</Value>
   </LocaleResource>

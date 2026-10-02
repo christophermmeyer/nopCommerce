@@ -1,0 +1,251 @@
+@model AiAgentModel
+
+@{
+    var isEdit = Model.Id != Guid.Empty;
+    ViewBag.PageTitle = isEdit
+        ? T("Admin.Configuration.AiAgents.Edit").Text
+        : T("Admin.Configuration.AiAgents.AddNew").Text;
+    NopHtml.SetActiveMenuItemSystemName("AI agents");
+}
+
+<form asp-action="Save" method="post" id="ai-agent-wizard">
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="ApiKeyConfigured" type="hidden" />
+
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @(isEdit ? T("Admin.Configuration.AiAgents.Edit") : T("Admin.Configuration.AiAgents.AddNew"))
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Admin.Configuration.AiAgents.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" class="btn btn-primary" id="ai-agent-save" style="display:none;">
+                <i class="far fa-floppy-disk"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="alert alert-info">@T("Admin.Configuration.AiAgents.PrototypeBanner")</div>
+            <div asp-validation-summary="ModelOnly" class="message-error"></div>
+
+            <ul class="nav nav-pills nav-justified mb-3" id="ai-agent-steps">
+                <li class="nav-item"><span class="nav-link active" id="ai-agent-indicator-1"><strong>@T("Admin.Configuration.AiAgents.Wizard.Basics")</strong><br />@T("Admin.Configuration.AiAgents.Wizard.BasicsHint")</span></li>
+                <li class="nav-item"><span class="nav-link" id="ai-agent-indicator-2"><strong>@T("Admin.Configuration.AiAgents.Wizard.Connection")</strong><br />@T("Admin.Configuration.AiAgents.Wizard.ConnectionHint")</span></li>
+                <li class="nav-item"><span class="nav-link" id="ai-agent-indicator-3"><strong>@T("Admin.Configuration.AiAgents.Wizard.Permissions")</strong><br />@T("Admin.Configuration.AiAgents.Wizard.PermissionsHint")</span></li>
+                <li class="nav-item"><span class="nav-link" id="ai-agent-indicator-4"><strong>@T("Admin.Configuration.AiAgents.Wizard.Review")</strong><br />@T("Admin.Configuration.AiAgents.Wizard.ReviewHint")</span></li>
+            </ul>
+
+            <div class="card card-default" id="ai-agent-step-1">
+                <div class="card-header">@T("Admin.Configuration.AiAgents.Steps.BasicsTitle")</div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="Name">@T("Admin.Configuration.AiAgents.Fields.Name")</label></div>
+                        <div class="col-md-9">
+                            <input asp-for="Name" class="form-control" maxlength="80" />
+                            <span asp-validation-for="Name"></span>
+                            <span class="form-text text-muted">@T("Admin.Configuration.AiAgents.Fields.Name.Hint")</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="Role">@T("Admin.Configuration.AiAgents.Fields.Role")</label></div>
+                        <div class="col-md-9">
+                            <select asp-for="Role" asp-items="Model.AvailableRoles" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="Description">@T("Admin.Configuration.AiAgents.Fields.Description")</label></div>
+                        <div class="col-md-9">
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span class="form-text text-muted">@T("Admin.Configuration.AiAgents.Fields.Description.Hint")</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-9 offset-md-3">
+                            <button type="button" class="btn btn-default" disabled="disabled">@T("Common.Back")</button>
+                            <button type="button" class="btn btn-primary" data-ai-step="2">@T("Common.Continue")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-default" id="ai-agent-step-2" style="display:none;">
+                <div class="card-header">@T("Admin.Configuration.AiAgents.Steps.ConnectionTitle")</div>
+                <div class="card-body">
+                    <div class="alert alert-warning">@T("Admin.Configuration.AiAgents.ConnectionWarning")</div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="Provider">@T("Admin.Configuration.AiAgents.Fields.Provider")</label></div>
+                        <div class="col-md-9">
+                            <select asp-for="Provider" asp-items="Model.AvailableProviders" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="ModelName">@T("Admin.Configuration.AiAgents.Fields.Model")</label></div>
+                        <div class="col-md-9">
+                            <input asp-for="ModelName" class="form-control" />
+                            <span class="form-text text-muted">@T("Admin.Configuration.AiAgents.Fields.Model.Hint")</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="ApiKey">@T("Admin.Configuration.AiAgents.Fields.ApiKey")</label></div>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input asp-for="ApiKey" type="password" autocomplete="off" class="form-control" />
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-default" disabled="disabled" title="@T("Admin.Configuration.AiAgents.Reveal")">@T("Admin.Configuration.AiAgents.Reveal")</button>
+                                </div>
+                            </div>
+                            <span class="form-text text-muted">@T("Admin.Configuration.AiAgents.Fields.ApiKey.Hint")</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label asp-for="EndpointUrl">@T("Admin.Configuration.AiAgents.Fields.Endpoint")</label></div>
+                        <div class="col-md-9">
+                            <input asp-for="EndpointUrl" class="form-control" />
+                            <span class="form-text text-muted">@T("Admin.Configuration.AiAgents.Fields.Endpoint.Hint")</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-9 offset-md-3">
+                            <button type="button" class="btn btn-default" data-ai-step="1">@T("Common.Back")</button>
+                            <button type="button" class="btn btn-primary" data-ai-step="3">@T("Common.Continue")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-default" id="ai-agent-step-3" style="display:none;">
+                <div class="card-header">@T("Admin.Configuration.AiAgents.Steps.PermissionsTitle")</div>
+                <div class="card-body">
+                    <p class="text-muted">@T("Admin.Configuration.AiAgents.PermissionsIntro")</p>
+                    @foreach (var choice in Model.PermissionChoices)
+                    {
+                        <div class="checkbox">
+                            <label>
+                                @if (choice.Disabled)
+                                {
+                                    <input type="checkbox" disabled="disabled" />
+                                }
+                                else if (choice.Selected)
+                                {
+                                    <input type="checkbox" name="SelectedPermissions" value="@choice.SystemName" checked="checked" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="SelectedPermissions" value="@choice.SystemName" />
+                                }
+                                @choice.Title
+                            </label>
+                            <div class="form-text text-muted">@choice.Notes</div>
+                        </div>
+                    }
+                    <p class="text-muted">@T("Admin.Configuration.AiAgents.PublishDisabledHint")</p>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-default" data-ai-step="2">@T("Common.Back")</button>
+                            <button type="button" class="btn btn-primary" data-ai-step="4">@T("Common.Continue")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-default" id="ai-agent-step-4" style="display:none;">
+                <div class="card-header">@T("Admin.Configuration.AiAgents.Steps.ReviewTitle")</div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr><th style="width:180px;">@T("Admin.Configuration.AiAgents.Fields.Name")</th><td id="ai-review-name"></td></tr>
+                            <tr><th>@T("Admin.Configuration.AiAgents.Fields.Role")</th><td id="ai-review-role"></td></tr>
+                            <tr><th>@T("Admin.Configuration.AiAgents.Fields.Provider")</th><td id="ai-review-provider"></td></tr>
+                            <tr><th>@T("Admin.Configuration.AiAgents.Fields.ApiKey")</th><td id="ai-review-key"></td></tr>
+                            <tr><th>@T("Admin.Configuration.AiAgents.Permissions.Column.Capability")</th><td id="ai-review-permissions"></td></tr>
+                            <tr><th>@T("Admin.Configuration.AiAgents.Fields.Status")</th><td><span class="badge badge-warning">@T("Admin.Configuration.AiAgents.Status.NeedsReview")</span></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="alert alert-info">@T("Admin.Configuration.AiAgents.SaveHint")</div>
+                    <button type="button" class="btn btn-default" data-ai-step="3">@T("Common.Back")</button>
+                    <a asp-action="List" class="btn btn-default">@T("Admin.Common.Cancel")</a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="far fa-floppy-disk"></i>
+                        @T("Admin.Common.Save")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script asp-location="Footer">
+    (function () {
+        var masked = '@T("Admin.Configuration.AiAgents.ApiKey.Masked")';
+        var missing = '@T("Admin.Configuration.AiAgents.ApiKey.Missing")';
+        var noPublish = '@T("Admin.Configuration.AiAgents.NoAutoPublish")';
+
+        function selectedText(id) {
+            var select = document.getElementById(id);
+            if (!select || select.selectedIndex < 0)
+                return '';
+            return select.options[select.selectedIndex].text;
+        }
+
+        function showStep(step) {
+            if (step === 2 || step === 3 || step === 4) {
+                var name = document.getElementById('Name');
+                if (!name || !name.value.trim()) {
+                    showStep(1);
+                    if (name) name.focus();
+                    return;
+                }
+            }
+
+            for (var i = 1; i <= 4; i++) {
+                var panel = document.getElementById('ai-agent-step-' + i);
+                var indicator = document.getElementById('ai-agent-indicator-' + i);
+                if (panel)
+                    panel.style.display = i === step ? '' : 'none';
+                if (indicator)
+                    indicator.classList.toggle('active', i === step);
+            }
+
+            var headerSave = document.getElementById('ai-agent-save');
+            if (headerSave)
+                headerSave.style.display = step === 4 ? '' : 'none';
+
+            if (step === 4)
+                fillReview();
+        }
+
+        function fillReview() {
+            document.getElementById('ai-review-name').textContent = document.getElementById('Name').value;
+            document.getElementById('ai-review-role').textContent = selectedText('Role');
+            var model = document.getElementById('ModelName').value;
+            document.getElementById('ai-review-provider').textContent = selectedText('Provider') + (model ? ' · ' + model : '');
+
+            var key = document.getElementById('ApiKey').value;
+            var configuredFlag = document.getElementById('ApiKeyConfigured').value === 'True' || document.getElementById('ApiKeyConfigured').value === 'true';
+            var configured = (key && key.replace(/[•*·.]/g, '').length > 0) || (configuredFlag && key.length > 0);
+            document.getElementById('ai-review-key').textContent = configured ? masked : missing;
+
+            var names = [];
+            document.querySelectorAll('input[name="SelectedPermissions"]:checked').forEach(function (input) {
+                var label = input.parentElement ? input.parentElement.textContent.trim() : input.value;
+                names.push(label);
+            });
+            names.push(noPublish);
+            document.getElementById('ai-review-permissions').textContent = names.join(' · ');
+        }
+
+        document.querySelectorAll('[data-ai-step]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                showStep(Number(button.getAttribute('data-ai-step')));
+            });
+        });
+
+        if (document.querySelector('.message-error .validation-summary-errors, .field-validation-error'))
+            showStep(1);
+    })();
+</script>
