@@ -992,7 +992,10 @@ label, label + * {
 }
 
 .header-logo a img {
-  max-width: 100%;
+  max-width: 200px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
   opacity: 1;
 }
 
